@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
-import Header2 from '../../components/Header2';
-
 
 let emptyForm = {
     firstname: '',
@@ -13,9 +11,10 @@ let emptyForm = {
     agree: false,
 }
 
-function UserCreate() {
+function UserCreate({setUser}) {
     
     const [form, setForm] = useState(emptyForm)
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
             const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -27,32 +26,33 @@ function UserCreate() {
         e.preventDefault()
 
         try {
-            const authResponse = await axios.post('/account/user/create', ...form)
+            console.log(form)
+            const authResponse = await axios.post('/account/user/create', form)
             const token = authResponse.data.token
+            console.log(token)
 
             if (!token) {
                 setForm(emptyForm)
                 return
             }
-
+            localStorage.setItem("admin",false)
             localStorage.setItem("token", token)
 
-            const userResponse = await axios.get('/api/user', {
+            const userResponse = await axios.get('/api/users', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-
+            console.log("userResponse",userResponse)
             setUser(userResponse.data)
-
-            navigate('/menu')
+ 
+            navigate('/')
         } catch (err) {
             console.log('Submit failed: ' + err.message)
         }
     }
     return (
-        <div>
-            <Header2 />
+        <div> 
             <h1 className="text-center text-3xl font-bold my-10">Create an account</h1>
             <div>
                 <h2 className="text-lg text-gray-500 font-bold text-center">STARBUCKS® REWARDS</h2>
