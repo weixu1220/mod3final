@@ -8,9 +8,17 @@ const PORT = process.env.PORT1
 
 // Load the connectDB function
 const connectDB = require('./config')
+const userRoutes = require('./routes/userRoutes')
+const adminRoutes = require('./routes/adminRoutes')
+const userAuthRoutes = require('./routes/userAuthRoutes')
+const adminAuthRoutes = require('./routes/adminAuthRoutes')
 
 //Connect to database
 connectDB()
+app.use('/api/user',userRoutes)
+app.use('/api/admin',adminRoutes)
+app.use('/account/user',userAuthRoutes)
+app.use('/account/admin',adminAuthRoutes)
 
 //Listen to the given port
 app.listen(PORT, ()=>{
