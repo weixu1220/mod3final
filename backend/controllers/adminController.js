@@ -1,9 +1,9 @@
-const Admin = require('../models/userModel')
+const Admin = require('../models/adminModel')
 
 async function show (req,res){
-    console.log('GET /users')
+    console.log('GET /admin')
     try {
-        const foundAdmin = await User.findById(req.id)
+        const foundAdmin = await Admin.findById(req.id)
         res.json({
             firstname: foundAdmin.firstname,
             lastname: foundAdmin.lastname,

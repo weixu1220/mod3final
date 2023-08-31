@@ -24,11 +24,11 @@ async function create(req, res) {
     // 2. If they don't exist, encrypt their password
 
         const encryptedPassword = await bcrypt.hash(req.body.password, Number(process.env.SALT_ROUNDS))
-
+        console.log("encryptedPassword",encryptedPassword)
     // 3. Add new user to the database with encrypted password
 
         const newUser = await User.create({ ...req.body, password: encryptedPassword })
-
+        console.log("newUser",newUser)
     // 4. Generate a JWT token and returning it to user (Give them keys!) (Sign a permission slip and give it to them)
 
         const token = generateToken(newUser)
@@ -44,13 +44,14 @@ async function create(req, res) {
 }
 
 async function signIn(req, res) {
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~here")
 
     try {
 
     // 1. Check if user exists
 
     const foundUser = await User.findOne({ email: req.body.email })
-
+        console.log("foundUser",foundUser)
     if (!foundUser) {
         return res.status(404).json({ error: 'No such user exists' })
     }
@@ -58,6 +59,7 @@ async function signIn(req, res) {
     // 2. Check if the password provided by user matches the one in the database
 
     const validPass = await bcrypt.compare(req.body.password, foundUser.password)
+    console.log("validpass")
 
     if (!validPass) {
         return res.status(400).json({ error: 'Invalid credentials' })
@@ -66,6 +68,7 @@ async function signIn(req, res) {
     // 3. Generate a JWT token and return it to user
 
     const token = generateToken(foundUser)
+    console.log("token",token)
 
     res.status(200).json({ token })
 

@@ -24,7 +24,7 @@ function authorize(req, res, next) {
 
         const payload = jwt.verify(token, process.env.JWT_SECRET)
         
-        console.log(payload)
+        console.log("payload",payload)
 
         if (payload.error) {
             return res.status(403).json({ error: payload.error })
@@ -33,7 +33,7 @@ function authorize(req, res, next) {
         // 3. Attach the payload from the token to the request object (req)
 
         req.id = payload.id 
-        req.username = payload.username
+        req.email = payload.email
 
         // 4. Move on to the requested route (next)
 
