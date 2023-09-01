@@ -1,11 +1,18 @@
+import { useState } from "react"
+import NewPromo from "./promo/new"
+
+
+
 
 function Home() {
+
+    
+
     return (
-        <div>
-            <div>
-                home
-            </div>
+        <div >
+            <NewPromo />
             
+
         </div>
     );
 }

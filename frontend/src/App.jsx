@@ -35,7 +35,6 @@ function App() {
         }
       })
       if(response.data){
-        console.log(response.data)
         response.data.admin = false
         setUser(response.data)
         setLoggedIn(response.data.firstname)
@@ -69,8 +68,6 @@ function App() {
   useEffect(()=>{
     let token = localStorage.getItem("token")
     let isAdmin = localStorage.getItem("admin")
-    console.log(token)
-    console.log(isAdmin)
     if (token){
       if (isAdmin === "true"){
         getAdmin()
@@ -81,8 +78,6 @@ function App() {
     }
   },[])
 
-  console.log(user)
-  console.log(loggedIn)
   return (
     <div>
       <Header1 loggedIn={loggedIn} handleLogout={handleLogout} />
