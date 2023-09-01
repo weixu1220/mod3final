@@ -16,7 +16,7 @@ const userRoutes = require('./routes/userRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 const userAuthRoutes = require('./routes/userAuthRoutes')
 const adminAuthRoutes = require('./routes/adminAuthRoutes')
-
+const promoRoutes = require('./routes/promoRoutes')
 const {authorize} = require('./middlewares/authMiddleware')
 
 app.use(express.json())
@@ -26,6 +26,7 @@ app.use(cors())
 
 app.use('/api/users', authorize, userRoutes)
 app.use('/api/admins', authorize, adminRoutes)
+app.use('/api/promos',promoRoutes)
 app.use('/account/user',userAuthRoutes)
 app.use('/account/admin',adminAuthRoutes)
 

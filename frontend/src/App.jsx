@@ -27,7 +27,6 @@ function App() {
   };
 
   async function getUser() {
-    console.log(localStorage.getItem('token'))
     try {
       const response = await axios.get('/api/users', {
         headers: {
