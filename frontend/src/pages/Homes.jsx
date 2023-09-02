@@ -4,7 +4,7 @@ import IndexPromo from "./promo";
 function Home() {
     return (
         <div >
-            {/* <IndexPromo /> */}
+            <IndexPromo /> 
             {localStorage.getItem('admin')==='true' && <NewPromo />} 
         </div>
     );

@@ -3,36 +3,48 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import EditPromo from "./edit"
 
 function IndexPromo() {
     const [promo, setPromo] = useState([])
+    const [edit,setEdit] = useState(false)
+    const [current, setCurrent] = useState({})
 
     const navigate = useNavigate()
-    const handleRedirect = () => {
-        console.log("click")
+    const handleRedirect = (item) => {
+        console.log(item.url)
     }
 
     async function getPromo() {
         try {
             console.log('getting promo...')
             const response = await axios.get('/api/promos')
-            console.log(response.data)
-            setPromo(response.data)
+            setPromo(response.data.promo)
         } catch (err) {
             console.log(err.message)
         }
     }
 
-   const handleEdit = (id)=>{
-    console.log('handling Edit...')
-    console.log(id)
+    const handleEdit = (item) => {
+        console.log('handling Edit form display...')
+        setEdit(!edit)
+        setCurrent(item)
+    }
 
-   }
-
-   const handleDelete = (id)=>{
-    console.log('handling Delete...')
-    console.log(id)
-}
+    const handleDelete = async(item) => {
+        console.log('handling Delete...')
+        console.log(item)
+        try{
+            await axios.delete(`/api/promos/${item._id}`,{
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
+                }
+            })
+            getPromo()
+        }catch(err){
+            console.log(err.message)
+        }
+    }
 
     useEffect(() => {
         getPromo()
@@ -49,15 +61,17 @@ function IndexPromo() {
                         <div className="w-6/12 text-center px-8">
                             <h1 className="w-11/12 text-2xl font-semibold my-8 mx-auto">{item.title}</h1>
                             <p className="w-11/12 text-lg mx-auto">{item.body}</p>
-                            <button className="font-bold text-md border-2 border-black rounded-full py-1 px-4 m-8" onClick={handleRedirect}>{item.btnText}</button>
-                            {localStorage.getItem('admin') === 'true' &&
+                            <button className="font-bold text-md border-2 border-black rounded-full py-1 px-4 m-8" onClick={()=>handleRedirect(item)}>{item.btnText}</button>
+                            {sessionStorage.getItem('admin') === 'true' &&
                                 <div>
-                                    <button className="mx-2" onClick={handleEdit(item_id)}><FontAwesomeIcon icon={faPen} /></button>
-                                    <button className="mx-2" onClick={handleDelete(item._id)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                                    <button className="mx-2" onClick={()=>handleEdit(item)}><FontAwesomeIcon icon={faPen} /></button>
+                                    <button className="mx-2" onClick={()=>handleDelete(item)}><FontAwesomeIcon icon={faTrashCan} /></button>
                                 </div>}
                         </div>
+                        {edit && current === item && <EditPromo item={item} setCurrent={setCurrent} getPromo={getPromo}/>} 
                     </div>
                 )}
+                
             </div>
         </div>
     );
