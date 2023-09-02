@@ -44,7 +44,6 @@ async function create(req, res) {
 }
 
 async function signIn(req, res) {
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~here")
 
     try {
 

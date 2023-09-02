@@ -27,7 +27,7 @@ function UserCreate({setUser}) {
 
         try {
             console.log(form)
-            const authResponse = await axios.post('/account/user/create', form)
+            const authResponse = await axios.post('/api/account/user/create', form)
             const token = authResponse.data.token
             console.log(token)
 
@@ -35,12 +35,14 @@ function UserCreate({setUser}) {
                 setForm(emptyForm)
                 return
             }
-            localStorage.setItem("admin",false)
-            localStorage.setItem("token", token)
+            localStorage.setItem('token', token); // Store token in local storage
+            localStorage.setItem("admin", false);
+            sessionStorage.setItem('token', token); // Store token in session storage
+            sessionStorage.setItem("admin", false);
 
             const userResponse = await axios.get('/api/users', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
             console.log("userResponse",userResponse)

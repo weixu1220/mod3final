@@ -23,28 +23,34 @@ function AdminSignIn({setAdmin}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(form)
         try {
-            const authResponse = await axios.post('/account/admin/signin', form)
+            const authResponse = await axios.post('/api/account/admin/signin', form)
             const token = authResponse.data.token
-
             if (!token) {
                 setForm(emptyForm)
                 return
             }
-            localStorage.setItem("admin",true)
-            localStorage.setItem("token", token)
+
+            if (logStat) {
+                localStorage.setItem('token', token); // Store token in local storage
+                localStorage.setItem("admin", true);
+                sessionStorage.setItem('token', token); // Store token in session storage
+                sessionStorage.setItem("admin", true);
+            } else {
+                sessionStorage.setItem('token', token); // Store token in session storage
+                sessionStorage.setItem("admin", true);
+            }
 
             const adminResponse = await axios.get('/api/admins', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
 
             setAdmin(adminResponse.data)
             navigate('/')
         } catch (err) {
-            console.log(err.message)
+            console.log('Failed to sign in as an admin.')
         }
     }
     return (

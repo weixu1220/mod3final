@@ -2,26 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const promoSchema = new Schema({
-    title:{
-        type:String,
+    title: {
+        type: String,
+        required: true,
     },
-    text:{
-        type:String,
+    body: {
+        type: String,
+        required: true,
     },
-    btn:{
-        type:String,
+    btnText: {
+        type: String,
     },
-    url:{
-        type:String,
+    url: {
+        type: String,
     },
-    bgColor:{
-        type:String,
+    bgColor: {
+        type: String,
     },
-    image:{
-        data: Buffer,
-        contentType: String
+    image: {
+        type: String
     }
-    
+
 })
 const Promo = mongoose.model('promo', promoSchema)
 

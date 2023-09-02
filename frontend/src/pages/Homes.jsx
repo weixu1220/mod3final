@@ -1,18 +1,11 @@
-import { useState } from "react"
 import NewPromo from "./promo/new"
-
-
-
+import IndexPromo from "./promo";
 
 function Home() {
-
-    
-
     return (
         <div >
-            <NewPromo />
-            
-
+            {/* <IndexPromo /> */}
+            {localStorage.getItem('admin')==='true' && <NewPromo />} 
         </div>
     );
 }

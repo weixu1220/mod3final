@@ -5,8 +5,10 @@ import { faLocationDot, faCircleUser, faChevronDown } from '@fortawesome/free-so
 import { useState } from 'react'
 
 function Header1( {loggedIn, handleLogout}) {
+
     const navigate = useNavigate()
     const [profView, setProfView] = useState(false)
+  
     return (
         <div className="flex justify-between items-center border-b-2 border-gray-300">
             <div className='flex items-center'>
@@ -20,10 +22,10 @@ function Header1( {loggedIn, handleLogout}) {
                 {loggedIn &&
                     <div className='relative inline-block text-left'>
                     <div>
-                      <button type='button' className='flex items-center'>
+                      <button type='button' className='flex items-center'onClick={()=>setProfView(!profView)} >
                         <FontAwesomeIcon icon={faCircleUser} className='m-2' />
                         <h1 className='font-bold mr-4'>Account</h1>
-                        <FontAwesomeIcon className="mr-4"icon={faChevronDown} onClick={()=>setProfView(!profView)}/>
+                        <FontAwesomeIcon className="mr-4"icon={faChevronDown} />
                       </button>
                     </div>
                     {profView && <div className='origin-top-right absolute right-0 mt-2 mr-1 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>

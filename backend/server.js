@@ -27,8 +27,8 @@ app.use(cors())
 app.use('/api/users', authorize, userRoutes)
 app.use('/api/admins', authorize, adminRoutes)
 app.use('/api/promos',promoRoutes)
-app.use('/account/user',userAuthRoutes)
-app.use('/account/admin',adminAuthRoutes)
+app.use('/api/account/user',userAuthRoutes)
+app.use('/api/account/admin',adminAuthRoutes)
 
 //Listen to the given port
 app.listen(PORT, ()=>{

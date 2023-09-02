@@ -26,15 +26,23 @@ function UserSignIn({ setUser }) {
         e.preventDefault()
         console.log(form)
         try {
-            const authResponse = await axios.post('/account/user/signin', form)
+            const authResponse = await axios.post('/api/account/user/signin', form)
             const token = authResponse.data.token
 
             if (!token) {
                 setForm(emptyForm)
                 return
             }
-            localStorage.setItem("admin", false)
-            localStorage.setItem("token", token)
+
+            if (logStat) {
+                localStorage.setItem('token', token); // Store token in local storage
+                localStorage.setItem("admin", false);
+                sessionStorage.setItem('token', token); // Store token in session storage
+                sessionStorage.setItem("admin", false);
+            } else {
+                sessionStorage.setItem('token', token); // Store token in session storage
+                sessionStorage.setItem("admin", false);
+            }
 
             const userResponse = await axios.get('/api/users', {
                 headers: {
@@ -47,7 +55,7 @@ function UserSignIn({ setUser }) {
             navigate('/')
 
         } catch (err) {
-            console.log(err.message)
+            console.log('Fail to sign in as a user.')
         }
     }
 

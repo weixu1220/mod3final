@@ -25,19 +25,21 @@ function AdminCreate({setAdmin}) {
         e.preventDefault()
 
         try {
-            const authResponse = await axios.post('/account/admin/create', form)
+            const authResponse = await axios.post('/api/account/admin/create', form)
             const token = authResponse.data.token
 
             if (!token) {
                 setForm(emptyForm)
                 return
             }
-            localStorage.setItem("admin", true)
-            localStorage.setItem("token", token)
+            localStorage.setItem('token', token); // Store token in local storage
+            localStorage.setItem("admin", true);
+            sessionStorage.setItem("admin", true)
+            sessionStorage.setItem("token", token)
 
             const adminResponse = await axios.get('/api/admins', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
 

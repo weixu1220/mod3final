@@ -14,83 +14,105 @@ import axios from 'axios'
 
 function App() {
   const [user, setUser] = useState({})
-  const [admin,setAdmin] = useState({})
+  const [admin, setAdmin] = useState({})
   const [isLoading, setIsLoading] = useState(true)
-  const [loggedIn,setLoggedIn] = useState()
+  const [loggedIn, setLoggedIn] = useState()
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); // Clear token from local storage
+    sessionStorage.removeItem('token'); // Clear token from session storage
+    sessionStorage.removeItem('admin');
     localStorage.removeItem('admin');
     setUser({});
-    setAdmin({});
-    setLoggedIn(undefined);
-  };
+    setAdmin({})
+    setLoggedIn()
+  }
 
   async function getUser() {
     try {
       const response = await axios.get('/api/users', {
         headers: {
-          Authorization: ` Bearer ${localStorage.getItem('token')}`
+          Authorization: ` Bearer ${sessionStorage.getItem('token')}`
         }
       })
-      if(response.data){
+      if (response.data) {
         response.data.admin = false
         setUser(response.data)
         setLoggedIn(response.data.firstname)
       }
       setIsLoading(false)
     } catch (err) {
-      console.log(err.message)
+      console.log("User is not found!")
     }
-    
+
   }
 
   async function getAdmin() {
     try {
       const response = await axios.get('/api/admins', {
         headers: {
-          Authorization: ` Bearer ${localStorage.getItem('token')}`
+          Authorization: ` Bearer ${sessionStorage.getItem('token')}`
         }
       })
-      if(response.data){
+      if (response.data) {
         response.data.admin = true
         setAdmin(response.data)
-        setLoggedIn (response.data.firstname)
+        setLoggedIn(response.data.firstname)
       }
       setIsLoading(false)
     } catch (err) {
       console.log("Admin not found!")
     }
-    
+
   }
 
-  useEffect(()=>{
-    let token = localStorage.getItem("token")
-    let isAdmin = localStorage.getItem("admin")
-    if (token){
-      if (isAdmin === "true"){
-        getAdmin()
-      }else{
-        getUser()
-    }}else{
-      setIsLoading(false)
+  useEffect(() => {
+    let tokenSession = sessionStorage.getItem("token");
+    let tokenLocal = localStorage.getItem("token");
+    let isAdminSession = sessionStorage.getItem("admin");
+    let isAdminLocal = localStorage.getItem("admin");
+    console.log(tokenSession)
+    console.log(tokenLocal)
+    console.log(isAdminSession)
+    console.log(isAdminLocal)
+    // Check if a token exists in session storage or local storage
+    if (tokenSession) {
+      if (isAdminSession === "false") {
+        getUser();
+      } else if (isAdminSession === "true") {
+        getAdmin();
+      }
+    } else if (tokenLocal) {
+      tokenSession = tokenLocal
+      isAdminSession = isAdminLocal
+      console.log(tokenSession)
+      console.log(tokenLocal)
+      console.log(isAdminSession)
+      console.log(isAdminLocal)
+      if (isAdminLocal === "false") {
+        getUser();
+      } else if (isAdminLocal === "true") {
+        getAdmin();
+      }
+    } else {
+      setIsLoading(false);
     }
-  },[])
+  }, []);
 
   return (
     <div>
       <Header1 loggedIn={loggedIn} handleLogout={handleLogout} />
       <Routes>
-      <Route path='/' element={<Home current={loggedIn} />} />
-      <Route path='/menu' element={<Menu current={loggedIn} />} />
-      <Route path='/account/user/create' element={<UserCreate setUser={setUser} />} />
-      <Route path='/account/user/signin' element={<UserSignIn setUser={setUser} />} />
-      <Route path='/account/admin/create' element={<AdminCreate setAdmin={setAdmin} />} />
-      <Route path='/account/admin/signin' element={<AdminSignIn setAdmin={setAdmin} />} />
-    </Routes>
-    <Footer />
+        <Route path='/' element={<Home loggedIn={loggedIn} />} />
+        <Route path='/menu' element={<Menu loggedIn={loggedIn} />} />
+        <Route path='/account/user/create' element={<UserCreate setUser={setUser} />} />
+        <Route path='/account/user/signin' element={<UserSignIn setUser={setUser} />} />
+        <Route path='/account/admin/create' element={<AdminCreate setAdmin={setAdmin} />} />
+        <Route path='/account/admin/signin' element={<AdminSignIn setAdmin={setAdmin} />} />
+      </Routes>
+      <Footer />
     </div>
-    
+
   )
 }
 
