@@ -61,7 +61,7 @@ function EditPromo({ item,setCurrent,getPromo }) {
                     <h2 className="w-44 text-lg font-semibold my-4" >Image URL:</h2>
                     <input className="text-lg w-96 border-2 border-black rounded-lg my-4 p-2" name="image" type="text" defaultValue={item.image} ref={imageRef} />
                 </label>
-                <button className="self-center border-green-800 border-2 rounded-full text-green-800 font-semibold text-lg px-4 py-2 m-4" >update</button>
+                <button className="self-center bg-green-800 border-2 rounded-full text-white font-semibold text-lg px-4 py-2 m-4" >update</button>
             </form>
         </div>
     );

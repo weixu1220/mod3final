@@ -11,7 +11,7 @@ import AdminSignIn from './pages/admin/adminSignin'
 import Header1 from './components/Header1'
 import Footer from './components/Footer'
 import axios from 'axios'
-
+import Map from './pages/map/Map'
 function App() {
   const [user, setUser] = useState({})
   const [admin, setAdmin] = useState({})
@@ -109,6 +109,7 @@ function App() {
         <Route path='/account/user/signin' element={<UserSignIn setUser={setUser} />} />
         <Route path='/account/admin/create' element={<AdminCreate setAdmin={setAdmin} />} />
         <Route path='/account/admin/signin' element={<AdminSignIn setAdmin={setAdmin} />} />
+        <Route path='/store-locator' element={<Map/>} />
       </Routes>
       <Footer />
     </div>
