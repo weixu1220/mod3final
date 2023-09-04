@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-
+import Footer from "../../components/Footer";
 let emptyForm = {
     email: '',
     password: '',
 }
 
-function AdminSignIn({setAdmin}) {
+function AdminSignIn({setAdmin,setLoggedIn}) {
     const navigate = useNavigate()
 
     const [form, setForm] = useState(emptyForm)
@@ -46,8 +46,8 @@ function AdminSignIn({setAdmin}) {
                     Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
-
             setAdmin(adminResponse.data)
+            setLoggedIn(adminResponse.data.firstname)
             navigate('/')
         } catch (err) {
             console.log('Failed to sign in as an admin.')
@@ -70,6 +70,7 @@ function AdminSignIn({setAdmin}) {
             </div>
             
             <button className="self-center border-green-800 border-2 rounded-full text-green-800 font-semibold text-lg px-4 py-2 m-4" onClick={()=>navigate('/account/admin/create')}>Join now</button>
+            <Footer />
         </div>
     );
 }

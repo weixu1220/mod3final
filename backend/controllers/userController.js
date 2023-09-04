@@ -14,6 +14,7 @@ async function show (req,res){
             agree:foundUser.agree
         })
     }catch(err){
+        console.log("found it!")
         res.json({error: err.message})
     }
 }

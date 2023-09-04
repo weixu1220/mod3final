@@ -58,7 +58,7 @@ function IndexPromo() {
                         <div className="w-6/12">
                             <img src={item.image} alt="coffee promo image" />
                         </div>
-                        <div className={"w-6/12 text-center px-8"}>
+                        <div className="w-6/12 text-center px-8">
                             <h1 className="w-11/12 text-2xl font-semibold my-8 mx-auto">{item.title}</h1>
                             <p className="w-11/12 text-lg mx-auto">{item.body}</p>
                             <button className="font-bold text-md border-2 border-black rounded-full py-1 px-4 m-8 hover:bg-gray-200" onClick={()=>handleRedirect(item)}>{item.btnText}</button>

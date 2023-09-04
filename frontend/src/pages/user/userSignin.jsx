@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import Footer from "../../components/Footer";
 let emptyForm = {
     email: '',
     password: '',
 }
 
-function UserSignIn({ setUser }) {
+function UserSignIn({ setUser, setLoggedIn }) {
 
     const navigate = useNavigate()
 
@@ -51,7 +51,7 @@ function UserSignIn({ setUser }) {
             })
 
             setUser(userResponse.data)
-
+            setLoggedIn(userResponse.data.firstname)
             navigate('/')
 
         } catch (err) {
@@ -82,7 +82,7 @@ function UserSignIn({ setUser }) {
                 <p className="font-medium">Join Starbucks® Rewards to earn free food and drinks, get free refills, pay and order with your phone, and more.</p>
                 <button className="self-center border-green-800 border-2 rounded-full text-green-800 font-semibold text-lg px-4 py-2 m-4" onClick={() => navigate('/account/user/create')}>Join now</button>
             </div>
-
+            <Footer />
         </div>
     );
 }

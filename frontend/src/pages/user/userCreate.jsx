@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
-
+import Footer from "../../components/Footer";
 let emptyForm = {
     firstname: '',
     lastname: '',
@@ -11,7 +11,7 @@ let emptyForm = {
     agree: false,
 }
 
-function UserCreate({setUser}) {
+function UserCreate({setUser,setLoggedIn}) {
     
     const [form, setForm] = useState(emptyForm)
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ function UserCreate({setUser}) {
             })
             console.log("userResponse",userResponse)
             setUser(userResponse.data)
- 
+            setLoggedIn(userResponse.data.firstname)
             navigate('/')
         } catch (err) {
             console.log('Submit failed: ' + err.message)
@@ -111,6 +111,7 @@ function UserCreate({setUser}) {
                 </form>
 
             </div>
+            <Footer />
         </div>
     );
 }

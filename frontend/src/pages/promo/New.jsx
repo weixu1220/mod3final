@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 function NewPromo() {
     const [display, setDisplay] = useState(false)
+    const [promos, setPromos] = useState([]);
     const navigate = useNavigate()
 
     const handleClick = () => {
@@ -31,7 +32,6 @@ function NewPromo() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-
             const newPromo = {
                 title: titleRef.current.value,
                 body: bodyRef.current.value,
@@ -41,13 +41,15 @@ function NewPromo() {
                 image: imageRef.current.value,
             }
 
-            await axios.post('api/promos', newPromo, {
+            const response = await axios.post('api/promos', newPromo, {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
+            setPromos([...promos, response.data]);
             clearInput()
-            navigate("/")
+            setDisplay(!display)
+            window.location.reload();
         } catch (err) {
             console.log(err.message)
         }

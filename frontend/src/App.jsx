@@ -9,10 +9,12 @@ import UserSignIn from './pages/user/userSignin'
 import AdminCreate from './pages/admin/adminCreate'
 import AdminSignIn from './pages/admin/adminSignin'
 import Header1 from './components/Header1'
-import Footer from './components/Footer'
 import axios from 'axios'
-import Map from './pages/map/Map'
+import MapIndex from './pages/map/MapIndex'
+
+
 function App() {
+
   const [user, setUser] = useState({})
   const [admin, setAdmin] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -71,27 +73,25 @@ function App() {
     let tokenLocal = localStorage.getItem("token");
     let isAdminSession = sessionStorage.getItem("admin");
     let isAdminLocal = localStorage.getItem("admin");
-    console.log(tokenSession)
-    console.log(tokenLocal)
-    console.log(isAdminSession)
-    console.log(isAdminLocal)
+
     // Check if a token exists in session storage or local storage
     if (tokenSession) {
+      console.log("checkp1")
       if (isAdminSession === "false") {
         getUser();
       } else if (isAdminSession === "true") {
         getAdmin();
       }
     } else if (tokenLocal) {
+      console.log("checkp2")
       tokenSession = tokenLocal
       isAdminSession = isAdminLocal
-      console.log(tokenSession)
-      console.log(tokenLocal)
-      console.log(isAdminSession)
-      console.log(isAdminLocal)
+
       if (isAdminLocal === "false") {
+        console.log("checkp3")
         getUser();
       } else if (isAdminLocal === "true") {
+        console.log("checkp4")
         getAdmin();
       }
     } else {
@@ -105,13 +105,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home loggedIn={loggedIn} />} />
         <Route path='/menu' element={<Menu loggedIn={loggedIn} />} />
-        <Route path='/account/user/create' element={<UserCreate setUser={setUser} />} />
-        <Route path='/account/user/signin' element={<UserSignIn setUser={setUser} />} />
-        <Route path='/account/admin/create' element={<AdminCreate setAdmin={setAdmin} />} />
-        <Route path='/account/admin/signin' element={<AdminSignIn setAdmin={setAdmin} />} />
-        <Route path='/store-locator' element={<Map/>} />
+        <Route path='/account/user/create' element={<UserCreate setLoggedIn={setLoggedIn} setUser={setUser} />} />
+        <Route path='/account/user/signin' element={<UserSignIn setLoggedIn={setLoggedIn} setUser={setUser} />} />
+        <Route path='/account/admin/create' element={<AdminCreate setLoggedIn={setLoggedIn} setAdmin={setAdmin} />} />
+        <Route path='/account/admin/signin' element={<AdminSignIn setLoggedIn={setLoggedIn} setAdmin={setAdmin} />} />
+        <Route path='/store-locator' element={<MapIndex/>} />
       </Routes>
-      <Footer />
+      
     </div>
 
   )

@@ -1,11 +1,12 @@
 import NewPromo from "./promo/new"
 import IndexPromo from "./promo";
-
+import Footer from "../components/Footer";
 function Home() {
     return (
         <div >
             <IndexPromo /> 
-            {localStorage.getItem('admin')==='true' && <NewPromo />} 
+            {sessionStorage.getItem('admin')==='true' && <NewPromo />} 
+            <Footer />
         </div>
     );
 }
