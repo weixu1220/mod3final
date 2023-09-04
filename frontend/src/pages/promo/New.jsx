@@ -1,13 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useRef, useState } from 'react'
+import {  useRef, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 function NewPromo() {
     const [display, setDisplay] = useState(false)
     const [promos, setPromos] = useState([]);
-    const navigate = useNavigate()
 
     const handleClick = () => {
         setDisplay(!display)
