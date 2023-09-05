@@ -1,4 +1,4 @@
-import NewPromo from "./promo/new"
+import NewPromo from "./promo/New.jsx"
 import IndexPromo from "./promo";
 import Footer from "../components/Footer";
 function Home() {
