@@ -18,7 +18,10 @@ function Header1( {loggedIn, handleLogout}) {
                 <h1 className='font-bold m-2 hover:text-green-800'>GIFT CARDS</h1>
             </div>
             <div className='flex items-center'>
-              <Link to="/store-locator" className='flex items-center hover:text-green-800'><FontAwesomeIcon icon={faLocationDot} /><h1 className='font-semibold m-2 px-1 py-2'>Find a store</h1></ Link>
+              <Link to="/store-locator" className='flex items-center hover:text-green-800'>
+                {/* <FontAwesomeIcon icon={faLocationDot} /> */}
+                <h1 className='font-semibold m-2 px-1 py-2'>Find a store</h1>
+                </ Link>
                 {loggedIn &&
                     <div className='relative inline-block text-left'>
                     <div>
