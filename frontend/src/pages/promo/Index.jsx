@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import EditPromo from "./edit"
+import EditPromo from "./Edit.jsx"
 
 function IndexPromo() {
     const [promo, setPromo] = useState([])
