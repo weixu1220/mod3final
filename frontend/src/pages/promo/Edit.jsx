@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../../api";
 import { useRef } from "react"
 
 function EditPromo({ item,setCurrent,getPromo }) {

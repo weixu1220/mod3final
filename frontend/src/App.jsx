@@ -9,7 +9,7 @@ import UserSignIn from './pages/user/userSignin'
 import AdminCreate from './pages/admin/adminCreate'
 import AdminSignIn from './pages/admin/adminSignin'
 import Header1 from './components/Header1'
-import axios from 'axios'
+import axios from './api'
 import MapIndex from './pages/map/MapIndex'
 
 

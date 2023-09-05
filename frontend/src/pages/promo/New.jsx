@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import {  useRef, useState } from 'react'
-import axios from 'axios'
+import axios from "../../api";
 
 function NewPromo() {
     const [display, setDisplay] = useState(false)

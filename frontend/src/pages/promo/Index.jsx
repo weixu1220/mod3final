@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../../api";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

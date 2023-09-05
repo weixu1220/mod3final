@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../api";
 import { useState } from "react";
 import Footer from "../../components/Footer";
 let emptyForm = {

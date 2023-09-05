@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../api";
 import Footer from "../../components/Footer";
 let emptyForm = {
     email: '',
