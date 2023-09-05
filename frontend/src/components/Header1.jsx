@@ -1,7 +1,7 @@
 import logo from '../images/logo2.jpg'
 import { Link, useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faCircleUser, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faLocationDot, faCircleUser, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 
 function Header1( {loggedIn, handleLogout}) {
@@ -23,9 +23,9 @@ function Header1( {loggedIn, handleLogout}) {
                     <div className='relative inline-block text-left'>
                     <div>
                       <button type='button' className='flex items-center 'onClick={()=>setProfView(!profView)} >
-                        <FontAwesomeIcon icon={faCircleUser} className='m-2' />
+                        {/* <FontAwesomeIcon icon={faCircleUser} className='m-2' /> */}
                         <h1 className='font-bold mr-4'>Account</h1>
-                        <FontAwesomeIcon className="mr-4"icon={faChevronDown} />
+                        {/* <FontAwesomeIcon className="mr-4"icon={faChevronDown} /> */}
                       </button>
                     </div>
                     {profView && <div className='origin-top-right absolute right-0 mt-2 mr-1 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>

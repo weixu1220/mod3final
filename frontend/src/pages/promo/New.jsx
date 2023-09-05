@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import {  useRef, useState } from 'react'
 import axios from "../../api";
 
@@ -56,7 +56,10 @@ function NewPromo() {
     return (
         <div>
             <div className=" w-fit mx-auto my-4">
-                <button onClick={handleClick}><FontAwesomeIcon icon={faCirclePlus} size="2xl" /></button>
+                <button onClick={handleClick}>
+                    {/* <FontAwesomeIcon icon={faCirclePlus} size="2xl" /> */}
+                    <h1>Add new promo</h1>
+                    </button>
 
             </div>
             {display && <div className="flex justify-center w-fit border-2 rounded-xl shadow-lg mx-auto my-4 p-8">

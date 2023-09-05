@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 
 function Footer() {
     return (
@@ -51,14 +51,14 @@ function Footer() {
                 </div>
             </div>
             <div className='border-t-2 border-gray-300 m-10' >
-                <div className='flex my-5'>
+                {/* <div className='flex my-5'>
                     <Icon className='mx-2 my-4' icon="entypo-social:spotify-with-circle" width="40" height="40" color="black" />
                     <Icon className='mx-2 my-4' icon="entypo-social:facebook-with-circle" width="40" height="40" color="black" />
                     <Icon className='mx-2 my-4' icon="entypo-social:pinterest-with-circle" width="40" height="40" color="black" />
                     <Icon className='mx-2 my-4' icon="entypo-social:instagram-with-circle" width="40" height="40" color="black" />
                     <Icon className='mx-2 my-4' icon="entypo-social:youtube-with-circle" width="40" height="40" color="black" />
                     <Icon className='mx-2 my-4' icon="entypo-social:twitter-with-circle" width="40" height="40" color="black" />
-                </div>
+                </div> */}
                 <div className='my-5'>
                     <p>Privacy Notice | Terms of Use | Do Not Share My Personal Information | CA Supply Chain Act | Cookie Preferences</p>
                 </div>

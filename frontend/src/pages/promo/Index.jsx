@@ -1,8 +1,8 @@
 import axios from "../../api";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import EditPromo from "./Edit.jsx"
 
 function IndexPromo() {
@@ -64,8 +64,14 @@ function IndexPromo() {
                             <button className="font-bold text-md border-2 border-black rounded-full py-1 px-4 m-8 hover:bg-gray-200" onClick={()=>handleRedirect(item)}>{item.btnText}</button>
                             {sessionStorage.getItem('admin') === 'true' &&
                                 <div>
-                                    <button className="mx-2" onClick={()=>handleEdit(item)}><FontAwesomeIcon icon={faPen} /></button>
-                                    <button className="mx-2" onClick={()=>handleDelete(item)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                                    <button className="mx-2" onClick={()=>handleEdit(item)}>
+                                        {/* <FontAwesomeIcon icon={faPen} /> */}
+                                        <h1>Edit</h1>
+                                        </button>
+                                    <button className="mx-2" onClick={()=>handleDelete(item)}>
+                                        {/* <FontAwesomeIcon icon={faTrashCan} /> */}
+                                        Delete
+                                        </button>
                                 </div>}
                         </div>
                         {edit && current === item && <EditPromo item={item} setCurrent={setCurrent} getPromo={getPromo}/>} 

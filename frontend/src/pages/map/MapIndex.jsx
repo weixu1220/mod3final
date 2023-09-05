@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState, useMemo, useEffect } from "react";
 import { useLoadScript } from '@react-google-maps/api'
 import { GoogleMap, MarkerF } from '@react-google-maps/api'
@@ -113,11 +113,11 @@ const PlacesAutocomplete = ({ setSelected }) => {
                                     disabled={!ready}
                                     placeholder="Find a store"
                                 />
-                                <FontAwesomeIcon
+                                {/* <FontAwesomeIcon
                                     className="w-fit mr-1"
                                     size="xl"
                                     icon={faMagnifyingGlass}
-                                />
+                                /> */}
                             </div>
                             <div className='w-10/12 shadow-xl mx-4' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
                                 {status === 'OK' && <div role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>{renderSuggestions()}</div>}
