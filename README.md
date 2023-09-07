@@ -63,13 +63,13 @@ This is a project to demonstrate some skills for MERN stack.
 Design wise I wanted this clone site to be as close to the starbucks website as I possibly can. Since I have no idea what starbucks admin page would look I followed the same design of the user pages.
 
 ### Pages 
-[User/admin sign in page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/signin.png)
+![User/admin sign in page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/signin.png)
 
-[User/admin register page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/create.png)
+![User/admin register page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/create.png)
 
-[home page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/home.png)
+![home page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/home.png)
 
-[map page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/map.png)
+![map page](http:// github.com/weixu1220/mode3final/blob/main/frontend/src/images/map.png)
 
 ## ERD
 
