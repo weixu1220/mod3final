@@ -72,7 +72,7 @@ Design wise I wanted this clone site to be as close to the starbucks website as 
 ![map page](https://github.com/weixu1220/mod3final/blob/main/frontend/src/images/map.png)
 
 ## ERD
-
+![data schema](https://github.com/weixu1220/mod3final/blob/main/frontend/src/images/data.png)
 
 ## Author
 
